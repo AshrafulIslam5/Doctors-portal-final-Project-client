@@ -3,6 +3,7 @@ import Service from './Service';
 import cavity from '../../../assets/images/cavity.png';
 import whitening from '../../../assets/images/whitening.png';
 import fluoride from '../../../assets/images/fluoride.png';
+import ServiceHero from './ServiceHero';
 
 const Services = () => {
     return (
@@ -14,6 +15,7 @@ const Services = () => {
                 <Service icon={cavity} header={'Cavity Filling'} content={'Most of the people around us come here for cavity filling'}></Service>
                 <Service icon={whitening} header={'Teeth Whitening'} content={'We can help you get back your White old teeths'}></Service>
             </div>
+            <ServiceHero></ServiceHero>
         </div>
     );
 };
