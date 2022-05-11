@@ -32,17 +32,17 @@ const reviews = [
 
 const Testimonials = () => {
     return (
-        <div className='mb-52 px-20'>
+        <div className='mt-20 md:mt-0 mb-52 px-5 md:px-20'>
             <div className='flex justify-between mb-3'>
                 <div>
                     <h2 className='text-xl font-bold text-primary'>Testimonials</h2>
-                    <h2 className='text-3xl font-semibold'>What Our Patients Say</h2>
+                    <h2 className='text-2xl md:text-3xl font-semibold'>What Our Patients Say</h2>
                 </div>
-                <div className='w-2/12'>
+                <div className='w-[30px] lg:w-[192px]'>
                     <img src={quotes} alt="" />
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-3 mt-20'>
+            <div className='grid grid-cols-1 md:grid-cols-3 mt-20 gap-5'>
                 {
                     reviews.map(review => <Review key={review._id} review={review}></Review>)
                 }
