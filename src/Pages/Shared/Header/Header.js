@@ -17,6 +17,9 @@ const Header = () => {
         <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/appointment'>Appointment</CustomLink>
         <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/reviews'>Reviews</CustomLink>
         <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/contact'>Contact Us</CustomLink>
+        {
+            user && <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/dashboard'>Dashboard</CustomLink>
+        }
         {user
             ?
             <div className="dropdown dropdown-end">
@@ -52,6 +55,11 @@ const Header = () => {
                     <div className="flex items-center gap-3 text-xl">
                         {menuItems}
                     </div>
+                </div>
+                <div className="navbar-end md:hidden">
+                    <label for="my-drawer-2" tabIndex="1" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
                 </div>
             </div>
         </div>

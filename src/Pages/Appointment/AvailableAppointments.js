@@ -6,7 +6,6 @@ import { useQuery } from 'react-query'
 import Loading from '../Shared/Loading';
 
 const AvailableAppointments = ({ date }) => {
-    // const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
     const formattedDate = format(date, "PP")
@@ -16,11 +15,6 @@ const AvailableAppointments = ({ date }) => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
-    //         .then(res => res.json())
-    //         .then(data => setServices(data))
-    // }, [formattedDate])
     return (
         <div className='mb-32'>
             <p className='text-lg text-center text-secondary my-20'>Availabe Appointments on {format(date, 'PP')}</p>
