@@ -1,17 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CustomLink from '../../CustomLink/CustomLink';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import noPfpUser from '../../../assets/icons/user.png'
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+    const [user] = useAuthState(auth);
+    if (user?.photoURL === null) {
+        user.photoURL = noPfpUser;
+    }
     const menuItems = <>
-        <li><Link to='/home'>Home</Link></li>
-        <li><Link to='/about'>About</Link></li>
-        <li><Link to='/appointment'>Appointment</Link></li>
-        <li><Link to='/reviews'>Reviews</Link></li>
-        <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/'>Home</CustomLink>
+        <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/about'>About</CustomLink>
+        <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/appointment'>Appointment</CustomLink>
+        <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/reviews'>Reviews</CustomLink>
+        <CustomLink className="hover:bg-slate-300 mt-3 py-2 px-4 rounded-lg active:bg-primary" to='/contact'>Contact Us</CustomLink>
+        {user
+            ?
+            <div className="dropdown dropdown-end">
+                <div tabIndex="0" className="avatar">
+                    <div className="w-10 rounded-full ring hover:ring-primary ring-offset-base-100 ring-offset-2">
+                        <img src={user.photoURL} alt='' />
+                    </div>
+                </div>
+                <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><p>{user.displayName}</p></li>
+                    <li><button onClick={() => signOut(auth)}>Sign Out</button></li>
+                </ul>
+            </div>
+            :
+            <CustomLink className="hover:bg-slate-300 py-2 px-4 rounded-lg active:bg-primary" to='/login'>Login</CustomLink>
+        }
     </>
     return (
-        <div>
+        <div className='z-1002'>
             <div className="navbar bg-base-100 md:px-20">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -24,10 +48,10 @@ const Header = () => {
                     </div>
                     <Link to={'/'}><p className="btn btn-ghost normal-case text-xl">Doctors Portal</p></Link>
                 </div>
-                <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0">
+                <div className="navbar-end hidden w-full lg:flex">
+                    <div className="flex items-center gap-3 text-xl">
                         {menuItems}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
